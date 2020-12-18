@@ -49,8 +49,8 @@ steps:
   args:
   - '-c'
   - |
-    gcloud source repos clone hello-cloudbuild-env && \
-    cd hello-cloudbuild-env && \
+    gcloud source repos clone ase-assignment-env && \
+    cd ase-assignment-env && \
     git checkout candidate && \
     git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
 
