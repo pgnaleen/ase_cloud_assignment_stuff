@@ -18,7 +18,7 @@ app = Flask('hello-cloudbuild')
 
 @app.route('/')
 def hello():
-  return "ase cloud assignment mock service 1\n"
+  return "ase cloud assignment mock service 2\n"
 
 if __name__ == '__main__':
   app.run(host = '0.0.0.0', port = 8080)

@@ -18,7 +18,7 @@ from app import hello
 class TestHelloApp(unittest.TestCase):
 
   def test_hello(self):
-    self.assertEqual(hello(), "ase cloud assignment mock service 1\n")
+    self.assertEqual(hello(), "ase cloud assignment mock service 2\n")
 
 if __name__ == '__main__':
   unittest.main()
