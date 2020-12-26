@@ -28,7 +28,7 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'gcr.io/$PROJECT_ID/hello-cloudbuild:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/ase-assignment:$SHORT_SHA'
   - '.'
 
 # This step pushes the image to Container Registry
@@ -38,7 +38,7 @@ steps:
   id: Push
   args:
   - 'push'
-  - 'gcr.io/$PROJECT_ID/hello-cloudbuild:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/ase-assignment:$SHORT_SHA'
 # [END cloudbuild]
 
 # [START cloudbuild-trigger-cd]
@@ -74,7 +74,7 @@ steps:
     set -x && \
     cd ase-assignment-env && \
     git add kubernetes.yaml && \
-    git commit -m "Deploying image gcr.io/${PROJECT_ID}/hello-cloudbuild:${SHORT_SHA}
+    git commit -m "Deploying image gcr.io/${PROJECT_ID}/ase-assignment:${SHORT_SHA}
     Built from commit ${COMMIT_SHA} of repository hello-cloudbuild-app
     Author: $(git log --format='%an <%ae>' -n 1 HEAD)" && \
     git push origin candidate
