@@ -33,6 +33,21 @@ spec:
         image: gcr.io/GOOGLE_CLOUD_PROJECT/ase-assignment:COMMIT_SHA
         ports:
         - containerPort: 80
+        env:
+          - name: WORDPRESS_DB_HOST
+            value: 127.0.0.1:3306
+            # These secrets are required to start the pod.
+            # [START cloudsql_secrets]
+          - name: WORDPRESS_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: sql-credentials
+                key: username
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: sql-credentials
+                key: password
         # [START proxy_container]
       - name: cloudsql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.11
