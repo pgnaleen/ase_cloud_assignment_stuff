@@ -33,6 +33,28 @@ spec:
         image: gcr.io/GOOGLE_CLOUD_PROJECT/ase-assignment:COMMIT_SHA
         ports:
         - containerPort: 80
+        # [START proxy_container]
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.11
+        command: ["/cloud_sql_proxy",
+                  "-instances=api-project-114665101623:us-central1:ase-assignment-db=tcp:3306",
+                  "-credential_file=/secrets/cloudsql/key.json"]
+        # [START cloudsql_security_context]
+        securityContext:
+          runAsUser: 2  # non-root user
+          allowPrivilegeEscalation: false
+        # [END cloudsql_security_context]
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+      # [END proxy_container]
+    # [START volumes]
+    volumes:
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: google-credentials
+    # [END volumes]
 ---
 kind: Service
 apiVersion: v1
