@@ -32,7 +32,7 @@ spec:
       - name: ase-assignment
         image: gcr.io/GOOGLE_CLOUD_PROJECT/ase-assignment:COMMIT_SHA
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ---
 kind: Service
 apiVersion: v1
@@ -44,5 +44,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 80
   type: LoadBalancer
