@@ -48,13 +48,6 @@ spec:
           - name: cloudsql-instance-credentials
             mountPath: /secrets/cloudsql
             readOnly: true
-      # [END proxy_container]
-      # [START volumes]
-      volumes:
-        - name: cloudsql-instance-credentials
-          secret:
-            secretName: google-credentials
-      # [END volumes]
 ---
 kind: Service
 apiVersion: v1
